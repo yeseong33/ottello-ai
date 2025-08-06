@@ -5,15 +5,19 @@
 @keyframes synchronizedBounce {
   0%, 100% {
     transform: translate(-50%, -50%) scale(0.95);
-    opacity: 0.3;
+    opacity: 0.4;
   }
   50% {
     transform: translate(-50%, -50%) scale(1.0);
-    opacity: 0.5;
+    opacity: 0.6;
   }
 }
 
 .synchronized-bounce {
   animation: synchronizedBounce 1.5s ease-in-out infinite;
   animation-fill-mode: both;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

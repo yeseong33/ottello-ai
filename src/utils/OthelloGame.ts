@@ -1,12 +1,17 @@
 export type Player = 'black' | 'white';
 export type Board = (Player | null)[][];
 
+export interface Position {
+  row: number;
+  col: number;
+}
+
 export interface GameState {
   board: Board;
   currentPlayer: Player;
   blackScore: number;
   whiteScore: number;
-  validMoves: boolean[][];
+  validMoves: Position[];
   gameOver: boolean;
   winner: Player | 'draw' | null;
   blackDesign: string | null;
@@ -55,7 +60,7 @@ class OthelloGame {
     return row >= 0 && row < 8 && col >= 0 && col < 8;
   }
 
-  private getFlippableDiscs(row: number, col: number, player: Player): [number, number][] {
+  private getFlippableDiscs(row: number, col: number, player: Player): Position[] {
     if (this.board[row][col] !== null) return [];
 
     const directions = [
@@ -65,10 +70,10 @@ class OthelloGame {
     ];
 
     const opponent = this.getOpponent(player);
-    const flippableDiscs: [number, number][] = [];
+    const flippableDiscs: Position[] = [];
 
     for (const [dx, dy] of directions) {
-      const tempFlippable: [number, number][] = [];
+      const tempFlippable: Position[] = [];
       let currentRow = row + dx;
       let currentCol = col + dy;
 
@@ -76,7 +81,7 @@ class OthelloGame {
         this.isValidPosition(currentRow, currentCol) &&
         this.board[currentRow][currentCol] === opponent
       ) {
-        tempFlippable.push([currentRow, currentCol]);
+        tempFlippable.push({ row: currentRow, col: currentCol });
         currentRow += dx;
         currentCol += dy;
       }
@@ -105,7 +110,7 @@ class OthelloGame {
     if (flippableDiscs.length === 0) return false;
 
     this.board[row][col] = this.currentPlayer;
-    for (const [r, c] of flippableDiscs) {
+    for (const { row: r, col: c } of flippableDiscs) {
       this.board[r][c] = this.currentPlayer;
     }
 
@@ -134,11 +139,13 @@ class OthelloGame {
     return false;
   }
 
-  private calculateValidMoves(): boolean[][] {
-    const validMoves = Array(8).fill(null).map(() => Array(8).fill(false));
+  private calculateValidMoves(): Position[] {
+    const validMoves: Position[] = [];
     for (let row = 0; row < 8; row++) {
       for (let col = 0; col < 8; col++) {
-        validMoves[row][col] = this.isValidMove(row, col);
+        if (this.isValidMove(row, col)) {
+          validMoves.push({ row, col });
+        }
       }
     }
     return validMoves;

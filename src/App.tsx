@@ -4,16 +4,17 @@ import ModeSelection from './components/ModeSelection';
 import StoneSelectionScreen from './components/StoneSelectionScreen';
 import GameScreen from './components/GameScreen';
 import OthelloGame from './utils/OthelloGame';
-import OthelloAI, { Difficulty } from './ai/OthelloAI';
+import { OthelloAI, Difficulty } from './ai/OthelloAI';
 
-type GameScreen = 'welcome' | 'mode' | 'selection' | 'game';
+type Screen = 'welcome' | 'mode' | 'selection' | 'game';
+type GameMode = 'pvp' | 'ai';
 
 function App() {
-  const [currentScreen, setCurrentScreen] = useState<GameScreen>('welcome');
+  const [currentScreen, setCurrentScreen] = useState<Screen>('welcome');
   const [game, setGame] = useState(() => new OthelloGame());
   const [player1Design, setPlayer1Design] = useState<string | null>(null);
   const [player2Design, setPlayer2Design] = useState<string | null>(null);
-  const [gameMode, setGameMode] = useState<'pvp' | 'ai' | null>(null);
+  const [gameMode, setGameMode] = useState<GameMode | null>(null);
   const [aiDifficulty, setAiDifficulty] = useState<Difficulty | null>(null);
   const [ai, setAi] = useState<OthelloAI | null>(null);
 
@@ -32,8 +33,8 @@ function App() {
   const startGame = () => {
     if (player1Design && player2Design) {
       game.setPlayerDesigns(player1Design, player2Design);
-      if (gameMode === 'ai') {
-        setAi(new OthelloAI(aiDifficulty || 'medium'));
+      if (gameMode === 'ai' && aiDifficulty) {
+        setAi(new OthelloAI(aiDifficulty));
       }
       setCurrentScreen('game');
     }

@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes synchronizedBounce {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.0);
+    opacity: 0.5;
+  }
+}
+
+.synchronized-bounce {
+  animation: synchronizedBounce 1.5s ease-in-out infinite;
+  animation-fill-mode: both;
+}

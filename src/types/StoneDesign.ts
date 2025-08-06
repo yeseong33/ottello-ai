@@ -57,5 +57,13 @@ export const stoneDesigns: StoneDesign[] = [
     backgroundColor: '#228B22',
     shadowColor: '#1A691A',
     description: '신중한 거북이'
+  },
+  {
+    id: 'pufferfish',
+    name: '복어',
+    emoji: '🐡',
+    backgroundColor: '#FF69B4',
+    shadowColor: '#CC5490',
+    description: '귀여운 복어'
   }
 ];

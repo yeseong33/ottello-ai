@@ -60,7 +60,7 @@ const OthelloBoard: React.FC<OthelloBoardProps> = ({ gameState, onCellClick }) =
   return (
     <div
       ref={boardRef}
-      className="inline-block bg-gray-100 rounded-lg shadow-lg"
+      className="inline-block bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg transition-colors duration-200"
       style={{
         width: boardSize,
         height: boardSize,
@@ -89,9 +89,11 @@ const OthelloBoard: React.FC<OthelloBoardProps> = ({ gameState, onCellClick }) =
                 <button
                   key={cellKey}
                   className={`
-                    border border-gray-300 bg-gray-50
+                    border border-gray-300 dark:border-gray-600 
+                    bg-gray-50 dark:bg-gray-700
                     relative transition-all duration-200 ease-in-out
-                    hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-300
+                    hover:bg-gray-100 dark:hover:bg-gray-600 
+                    focus:outline-none focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-500
                     ${isValid && gameStarted ? 'ring-2 ring-blue-400' : ''}
                     ${!gameStarted ? 'cursor-not-allowed opacity-80' : ''}
                   `}

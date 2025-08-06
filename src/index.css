@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111827;
+}
+
+:root.dark {
+  --bg-color: #111827;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
 @keyframes synchronizedBounce {
   0%, 100% {
     transform: translate(-50%, -50%) scale(0.95);

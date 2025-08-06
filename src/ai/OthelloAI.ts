@@ -180,3 +180,5 @@ export class OthelloAI {
     }
   }
 }
+
+export default OthelloAI;

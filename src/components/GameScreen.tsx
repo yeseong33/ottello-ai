@@ -50,7 +50,7 @@ const GameScreen: React.FC<GameScreenProps> = ({
         )}
 
         <GameInfo gameState={gameState} isAIMode={isAIMode} />
-        <OthelloBoard gameState={gameState} onCellClick={onCellClick} />
+        <OthelloBoard gameState={gameState} onCellClick={onCellClick} isAIMode={isAIMode} />
       </div>
     </div>
   );

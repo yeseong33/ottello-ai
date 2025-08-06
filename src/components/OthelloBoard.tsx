@@ -5,9 +5,10 @@ import { stoneDesigns } from '../types/StoneDesign';
 interface OthelloBoardProps {
   gameState: GameState;
   onCellClick: (row: number, col: number) => void;
+  isAIMode?: boolean;
 }
 
-const OthelloBoard: React.FC<OthelloBoardProps> = ({ gameState, onCellClick }) => {
+const OthelloBoard: React.FC<OthelloBoardProps> = ({ gameState, onCellClick, isAIMode = false }) => {
   const { board, validMoves, currentPlayer, blackDesign, whiteDesign, gameStarted } = gameState;
   const boardRef = useRef<HTMLDivElement>(null);
   const [cellSize, setCellSize] = useState('3.5rem');
@@ -94,7 +95,7 @@ const OthelloBoard: React.FC<OthelloBoardProps> = ({ gameState, onCellClick }) =
                     relative transition-all duration-200 ease-in-out
                     hover:bg-gray-100 dark:hover:bg-gray-600 
                     focus:outline-none focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-500
-                    ${isValid && gameStarted ? 'ring-2 ring-blue-400' : ''}
+                    ${isValid && gameStarted && (!isAIMode || currentPlayer === 'black') ? 'ring-2 ring-blue-400' : ''}
                     ${!gameStarted ? 'cursor-not-allowed opacity-80' : ''}
                   `}
                   style={{
@@ -121,8 +122,8 @@ const OthelloBoard: React.FC<OthelloBoardProps> = ({ gameState, onCellClick }) =
                     </div>
                   )}
 
-                  {/* 둘 수 있는 위치 표시 */}
-                  {isValid && !cell && gameStarted && currentDesign && (
+                  {/* 둘 수 있는 위치 표시 (AI 차례가 아닐 때만) */}
+                  {isValid && !cell && gameStarted && currentDesign && (!isAIMode || currentPlayer === 'black') && (
                     <div
                       className="synchronized-bounce"
                       style={{

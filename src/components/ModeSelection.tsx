@@ -28,9 +28,9 @@ const ModeSelection: React.FC<ModeSelectionProps> = ({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white p-4">
-      <div className="bg-gray-50 rounded-lg p-8 shadow-lg max-w-md w-full">
-        <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">
+    <div className="flex flex-col items-center justify-center min-h-screen p-4">
+      <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 shadow-lg max-w-md w-full">
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-8 text-center">
           게임 모드 선택
         </h2>
 
@@ -41,7 +41,7 @@ const ModeSelection: React.FC<ModeSelectionProps> = ({
               className={`p-6 rounded-lg transition-all transform hover:scale-105
                 ${selectedMode === 'pvp'
                   ? 'bg-blue-500 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                  : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'}`}
               onClick={() => onSelectMode('pvp')}
             >
               <div className="text-4xl mb-2">👥</div>
@@ -52,7 +52,7 @@ const ModeSelection: React.FC<ModeSelectionProps> = ({
               className={`p-6 rounded-lg transition-all transform hover:scale-105
                 ${selectedMode === 'ai'
                   ? 'bg-blue-500 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                  : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'}`}
               onClick={() => onSelectMode('ai')}
             >
               <div className="text-4xl mb-2">🤖</div>
@@ -63,7 +63,7 @@ const ModeSelection: React.FC<ModeSelectionProps> = ({
           {/* AI 난이도 선택 */}
           {selectedMode === 'ai' && (
             <div className="mt-8">
-              <h3 className="text-lg font-bold text-gray-700 mb-4">
+              <h3 className="text-lg font-bold text-gray-700 dark:text-gray-200 mb-4">
                 AI 난이도 선택
               </h3>
               <div className="grid grid-cols-2 gap-3">
@@ -73,7 +73,7 @@ const ModeSelection: React.FC<ModeSelectionProps> = ({
                     className={`py-3 px-4 rounded-lg transition-colors
                       ${selectedDifficulty === difficulty
                         ? 'bg-blue-500 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'}`}
                     onClick={() => onSelectDifficulty(difficulty)}
                   >
                     {getDifficultyLabel(difficulty)}

@@ -31,30 +31,30 @@ const GameInfo: React.FC<GameInfoProps> = ({ gameState, isAIMode = false }) => {
   };
 
   return (
-    <div className="w-full bg-gray-50 p-4 rounded-lg shadow border border-gray-200">
+    <div className="w-full bg-gray-50 dark:bg-gray-800 p-4 rounded-lg shadow border border-gray-200 dark:border-gray-600">
       {!gameOver ? (
         <div className="text-center">
-          <p className="text-xl text-gray-700 mb-4">
+          <p className="text-xl text-gray-700 dark:text-gray-200 mb-4">
             현재 턴: {getCurrentPlayerText()} {getDesignEmoji(currentPlayer === 'black' ? blackDesign : whiteDesign)}
           </p>
           <div className="flex justify-center gap-8">
-            <p className="text-lg">
+            <p className="text-lg text-gray-700 dark:text-gray-200">
               {isAIMode ? '플레이어' : 'Player 1'} {getDesignEmoji(blackDesign)} : {blackScore}
             </p>
-            <p className="text-lg">
+            <p className="text-lg text-gray-700 dark:text-gray-200">
               {isAIMode ? 'AI' : 'Player 2'} {getDesignEmoji(whiteDesign)} : {whiteScore}
             </p>
           </div>
         </div>
       ) : (
         <div className="text-center">
-          <p className="text-2xl font-bold text-gray-800 mb-2">게임 종료!</p>
-          <p className="text-xl text-gray-700">{getWinnerText()}</p>
+          <p className="text-2xl font-bold text-gray-800 dark:text-white mb-2">게임 종료!</p>
+          <p className="text-xl text-gray-700 dark:text-gray-200">{getWinnerText()}</p>
           <div className="flex justify-center gap-8 mt-4">
-            <p className="text-lg">
+            <p className="text-lg text-gray-700 dark:text-gray-200">
               {isAIMode ? '플레이어' : 'Player 1'} {getDesignEmoji(blackDesign)} : {blackScore}
             </p>
-            <p className="text-lg">
+            <p className="text-lg text-gray-700 dark:text-gray-200">
               {isAIMode ? 'AI' : 'Player 2'} {getDesignEmoji(whiteDesign)} : {whiteScore}
             </p>
           </div>
